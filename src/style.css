@@ -1,0 +1,70 @@
+/* 1. 基础重置 */
+html, body, #app {
+  margin: 0; padding: 0; width: 100%; height: 100%;
+  overflow-x: hidden;
+  background-color: #f8fafc; /* 高级冷灰底色 */
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  color: #334155;
+}
+*, *::before, *::after { box-sizing: border-box; }
+
+/* 2. 🔵 核心：统一圆角系统 */
+:root {
+  /* 定义统一的圆角大小 */
+  --custom-radius-small: 12px;  /* 输入框、小按钮 */
+  --custom-radius-large: 20px;  /* 卡片、大容器 */
+  --el-border-radius-base: 12px !important; /* 强制覆盖 Element */
+  --el-color-primary: #6366f1;
+}
+
+/* 3. 强制修改 Element Plus 组件样式 */
+
+/* 输入框：统一变成微圆角矩形，不再是半圆 */
+.el-input__wrapper {
+  border-radius: var(--custom-radius-small) !important;
+  box-shadow: 0 0 0 1px #e2e8f0 inset !important;
+  padding: 8px 15px !important; /* 增加内边距，更大气 */
+}
+/* 聚焦时 */
+.el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 2px var(--el-color-primary) inset !important;
+}
+
+/* 按钮：统一圆角 */
+.el-button {
+  border-radius: var(--custom-radius-small) !important;
+  font-weight: 600;
+}
+/* 圆形按钮（如返回按钮）保持圆形 */
+.el-button.is-circle {
+  border-radius: 50% !important;
+}
+
+/* 卡片/容器：大圆角 */
+.el-card, .el-dialog {
+  border-radius: var(--custom-radius-large) !important;
+  border: none !important;
+}
+
+/* 弹窗样式优化 */
+.el-dialog {
+  overflow: hidden; /* 防止圆角被直角内容遮挡 */
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+.el-dialog__header {
+  padding: 20px 20px 10px !important;
+  margin-right: 0 !important;
+}
+.el-dialog__footer {
+  padding: 10px 20px 20px !important;
+}
+
+/* 文本域 (Textarea) */
+.el-textarea__inner {
+  border-radius: var(--custom-radius-small) !important;
+  padding: 12px !important;
+  box-shadow: 0 0 0 1px #e2e8f0 inset !important;
+}
+.el-textarea__inner:focus {
+  box-shadow: 0 0 0 2px var(--el-color-primary) inset !important;
+}
